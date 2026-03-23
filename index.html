@@ -3,151 +3,6 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Amr Portfolio</title>
-    <style>
-        body {
-            margin: 0;
-            font-family: 'Arial', sans-serif;
-            background: linear-gradient(to right, #141e30, #243b55);
-            color: white;
-        }
-        header {
-            text-align: center;
-            padding: 50px 20px;
-        }
-        header img {
-            width: 150px;
-            height: 150px;
-            border-radius: 50%;
-            border: 4px solid white;
-        }
-        header h1 {
-            font-size: 45px;
-            margin: 20px 0 10px 0;
-        }
-        header p {
-            font-size: 20px;
-            color: #ccc;
-        }
-        section {
-            padding: 50px 20px;
-            max-width: 1000px;
-            margin: auto;
-        }
-        h2 {
-            text-align: center;
-            font-size: 35px;
-            margin-bottom: 30px;
-            color: #ffcc00;
-        }
-        .skills, .projects {
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: center;
-            gap: 20px;
-        }
-        .skill, .project {
-            background: rgba(255,255,255,0.1);
-            padding: 20px;
-            border-radius: 12px;
-            flex: 1 1 200px;
-            text-align: center;
-            transition: transform 0.3s, background 0.3s;
-        }
-        .skill:hover, .project:hover {
-            transform: translateY(-10px);
-            background: rgba(255,255,255,0.2);
-        }
-        button {
-            margin-top: 15px;
-            background: #ffcc00;
-            border: none;
-            padding: 12px 25px;
-            font-size: 16px;
-            border-radius: 8px;
-            cursor: pointer;
-            color: #243b55;
-            transition: background 0.3s;
-        }
-        button:hover {
-            background: #e6b800;
-        }
-        footer {
-            text-align: center;
-            padding: 30px 20px;
-            background: #0f1a2b;
-            color: #ccc;
-        }
-        a {
-            color: #ffcc00;
-            text-decoration: none;
-        }
-    </style>
-</head>
-<body>
-
-<header>
-    <img src="https://via.placeholder.com/150" alt="My Photo">
-    <h1>أنا عمرو 👋</h1>
-    <p>مهتم بالبرمجة وببني أول Portfolio ليا 🔥</p>
-    <button onclick="alert('تواصل معايا قريب 😎')">تواصل معي</button>
-</header>
-
-<section id="about">
-    <h2>نبذة عني</h2>
-    <p>أنا مطور ويب مبتدئ، شغوف بتعلم كل جديد في البرمجة وتصميم المواقع. أحب بناء مشاريع عملية وأشاركها مع العالم. هدفي أكون محترف ويب عالمي.</p>
-</section>
-
-<section id="skills">
-    <h2>المهارات</h2>
-    <div class="skills">
-        <div class="skill">HTML & CSS</div>
-        <div class="skill">JavaScript</div>
-        <div class="skill">React</div>
-        <div class="skill">Node.js</div>
-        <div class="skill">Git & GitHub</div>
-    </div>
-</section>
-
-<section id="projects">
-    <h2>المشاريع</h2>
-    <div class="projects">
-        <div class="project">
-            <h3>موقع شخصي</h3>
-            <p>أول مشروع Portfolio تم تصميمه بالكامل.</p>
-            <button onclick="alert('مشروع شخصي')">عرض المشروع</button>
-        </div>
-        <div class="project">
-            <h3>موقع متجر</h3>
-            <p>تجربة بسيطة لمتجر إلكتروني باستخدام JavaScript.</p>
-            <button onclick="alert('مشروع متجر')">عرض المشروع</button>
-        </div>
-        <div class="project">
-            <h3>تطبيق ToDo</h3>
-            <p>تطبيق لإدارة المهام اليومية باستخدام LocalStorage.</p>
-            <button onclick="alert('مشروع ToDo')">عرض المشروع</button>
-        </div>
-    </div>
-</section>
-
-<section id="contact">
-    <h2>تواصل معي</h2>
-    <p>📧 Email: <a href="mailto:amr@example.com">amr@example.com</a></p>
-    <p>📱 الهاتف: 0123456789</p>
-    <button onclick="alert('شكراً لتواصلك!')">أرسل رسالة</button>
-</section>
-
-<footer>
-    &copy; 2026 عمرو. كل الحقوق محفوظة.
-</footer>
-
-</body>
-</html>
-<!DOCTYPE html>
-<html lang="ar">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Amr Portfolio - الموقع الاحترافي</title>
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
     <style>
@@ -182,7 +37,7 @@
         /* Header */
         header {
             text-align: center;
-            padding: 120px 20px 80px 20px;
+            padding: 120px 20px 60px 20px;
         }
         header img {
             width: 180px;
@@ -206,6 +61,32 @@
         }
         header button:hover { background: #e6b800; }
 
+        /* Main Cards */
+        #main-cards {
+            padding: 60px 20px;
+            max-width: 1000px;
+            margin: auto;
+        }
+        #main-cards h2 { text-align: center; font-size: 40px; margin-bottom: 40px; color: #ffcc00; }
+        .cards {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 20px;
+        }
+        .card {
+            background: rgba(255,255,255,0.1);
+            padding: 25px;
+            border-radius: 15px;
+            flex: 1 1 220px;
+            text-align: center;
+            transition: transform 0.3s, background 0.3s;
+        }
+        .card:hover {
+            transform: translateY(-10px);
+            background: rgba(255,255,255,0.2);
+        }
+
         /* Sections */
         section {
             padding: 80px 20px;
@@ -219,7 +100,7 @@
             color: #ffcc00;
         }
 
-        /* Skills */
+        /* Skills & Projects */
         .skills, .projects {
             display: flex;
             flex-wrap: wrap;
@@ -241,7 +122,6 @@
         .skill h3, .project h3 { margin: 15px 0 10px 0; }
         .skill p, .project p { color: #ccc; }
 
-        /* Buttons داخل المشاريع */
         .project button {
             margin-top: 15px;
             background: #ffcc00;
@@ -270,7 +150,6 @@
         /* Scroll effects */
         .fade-in { opacity: 0; transform: translateY(50px); transition: all 1s ease; }
         .fade-in.show { opacity: 1; transform: translateY(0); }
-
     </style>
 </head>
 <body>
@@ -278,6 +157,7 @@
 <nav>
     <div class="logo">Amr</div>
     <ul>
+        <li><a href="#main-cards">الأقسام الرئيسية</a></li>
         <li><a href="#about">نبذة عني</a></li>
         <li><a href="#skills">المهارات</a></li>
         <li><a href="#projects">المشاريع</a></li>
@@ -291,6 +171,29 @@
     <p>مهتم بالبرمجة وببني أول Portfolio احترافي لي على الإنترنت. أحب المشاريع العملية والتعلم المستمر.</p>
     <button onclick="alert('تواصل معايا قريب 😎')">تواصل معي</button>
 </header>
+
+<!-- Main Cards Section -->
+<section id="main-cards" class="fade-in">
+    <h2>أهم الأقسام</h2>
+    <div class="cards">
+        <div class="card">
+            <h3>الخانة 1</h3>
+            <p>نبذة عني أو أي محتوى مهم.</p>
+        </div>
+        <div class="card">
+            <h3>الخانة 2</h3>
+            <p>مشاريع أو روابط سريعة.</p>
+        </div>
+        <div class="card">
+            <h3>الخانة 3</h3>
+            <p>مهارات أو أي معلومات أساسية.</p>
+        </div>
+        <div class="card">
+            <h3>الخانة 4</h3>
+            <p>تواصل أو أي محتوى إضافي.</p>
+        </div>
+    </div>
+</section>
 
 <section id="about" class="fade-in">
     <h2>نبذة عني</h2>
@@ -353,7 +256,7 @@
     }, appearOptions);
     faders.forEach(fader => { appearOnScroll.observe(fader); });
 
-    // تغيير الصورة على الموقع (لو عايز تضيف صورتك)
+    // تغيير الصورة على الموقع (ضع رابط صورتك هنا)
     // document.getElementById('profilePic').src = "رابط_صورتك_هنا";
 </script>
 
