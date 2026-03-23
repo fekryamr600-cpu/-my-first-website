@@ -2,109 +2,140 @@
 <html lang="ar">
 <head>
 <meta charset="UTF-8">
-<title>لعبة الهروب</title>
+<title>لعبة سباق سيارات</title>
 
 <style>
-    body {
-        margin: 0;
-        overflow: hidden;
-        background: black;
-        font-family: Arial;
-        color: white;
-        text-align: center;
-    }
+body {
+    margin: 0;
+    background: #222;
+    overflow: hidden;
+    font-family: Arial;
+    text-align: center;
+    color: white;
+}
 
-    #game {
-        width: 400px;
-        height: 600px;
-        background: #111;
-        margin: auto;
-        position: relative;
-        border: 3px solid white;
-    }
+#game {
+    width: 350px;
+    height: 600px;
+    margin: auto;
+    background: #555;
+    position: relative;
+    overflow: hidden;
+    border: 4px solid white;
+}
 
-    #player {
-        width: 50px;
-        height: 50px;
-        background: lime;
-        position: absolute;
-        bottom: 10px;
-        left: 175px;
-    }
+/* الطريق */
+.road-line {
+    width: 10px;
+    height: 60px;
+    background: white;
+    position: absolute;
+    left: 170px;
+}
 
-    .enemy {
-        width: 50px;
-        height: 50px;
-        background: red;
-        position: absolute;
-        top: 0;
-    }
+/* العربية */
+#car {
+    width: 50px;
+    height: 80px;
+    background: lime;
+    position: absolute;
+    bottom: 10px;
+    left: 150px;
+    border-radius: 10px;
+}
 
-    #score {
-        margin-top: 10px;
-        font-size: 20px;
-    }
+/* عربيات العدو */
+.enemy {
+    width: 50px;
+    height: 80px;
+    background: red;
+    position: absolute;
+    top: -100px;
+    border-radius: 10px;
+}
+
+/* أزرار الموبايل */
+.controls {
+    margin-top: 10px;
+}
+
+button {
+    width: 100px;
+    height: 50px;
+    font-size: 20px;
+    margin: 5px;
+}
 </style>
 </head>
 
 <body>
 
-<h2>🎮 لعبة تجنب العوائق</h2>
+<h2>🏎️ لعبة سباق سيارات</h2>
+
 <div id="game">
-    <div id="player"></div>
+    <div id="car"></div>
 </div>
 
-<div id="score">النقاط: 0</div>
+<div class="controls">
+    <button onclick="moveLeft()">⬅️</button>
+    <button onclick="moveRight()">➡️</button>
+</div>
+
+<h3 id="score">النقاط: 0</h3>
 
 <script>
-let player = document.getElementById("player");
+let car = document.getElementById("car");
 let game = document.getElementById("game");
 let scoreDisplay = document.getElementById("score");
 
-let playerX = 175;
+let carX = 150;
 let score = 0;
 let gameOver = false;
 
-// تحكم بالكيبورد
-document.addEventListener("keydown", function(e) {
-    if (e.key === "ArrowLeft" && playerX > 0) {
-        playerX -= 25;
+// تحريك العربية
+function moveLeft() {
+    if (carX > 0) {
+        carX -= 25;
+        car.style.left = carX + "px";
     }
-    if (e.key === "ArrowRight" && playerX < 350) {
-        playerX += 25;
-    }
-    player.style.left = playerX + "px";
-});
+}
 
-// إنشاء عدو
+function moveRight() {
+    if (carX < 300) {
+        carX += 25;
+        car.style.left = carX + "px";
+    }
+}
+
+// إنشاء عربية عدو
 function createEnemy() {
     if (gameOver) return;
 
     let enemy = document.createElement("div");
     enemy.classList.add("enemy");
 
-    let enemyX = Math.floor(Math.random() * 350);
+    let enemyX = Math.floor(Math.random() * 300);
     enemy.style.left = enemyX + "px";
 
     game.appendChild(enemy);
 
     let fall = setInterval(() => {
-        let enemyTop = enemy.offsetTop;
-        enemy.style.top = enemyTop + 5 + "px";
+        let top = enemy.offsetTop;
+        enemy.style.top = top + 5 + "px";
 
         // تصادم
         if (
-            enemyTop > 540 &&
-            enemyX < playerX + 50 &&
-            enemyX + 50 > playerX
+            top > 500 &&
+            enemyX < carX + 50 &&
+            enemyX + 50 > carX
         ) {
             alert("💀 خسرت! النقاط: " + score);
             gameOver = true;
             location.reload();
         }
 
-        // خرج من الشاشة
-        if (enemyTop > 600) {
+        // خروج من الشاشة
+        if (top > 600) {
             clearInterval(fall);
             enemy.remove();
             score++;
@@ -113,9 +144,8 @@ function createEnemy() {
     }, 30);
 }
 
-// تكرار الأعداء
-setInterval(createEnemy, 1000);
-
+// تكرار العربيات
+setInterval(createEnemy, 1200);
 </script>
 
 </body>
