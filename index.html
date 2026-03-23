@@ -1,264 +1,158 @@
-<!DOCTYPE html>
-<html lang="ar">
+<!DOCTYPE html><html lang="ar" dir="rtl">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Amr Portfolio - الموقع الاحترافي</title>
-    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
-    <style>
-        /* عام */
-        body {
-            margin: 0;
-            font-family: 'Roboto', sans-serif;
-            scroll-behavior: smooth;
-            background: linear-gradient(to right, #141e30, #243b55);
-            color: white;
-        }
-        a { text-decoration: none; color: inherit; }
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>منصة تعليمية متكاملة</title><style>
+body {
+    margin: 0;
+    font-family: Tahoma;
+    background: #eef2f7;
+}
 
-        /* Navbar */
-        nav {
-            position: fixed;
-            top: 0;
-            width: 100%;
-            background: rgba(20,30,48,0.9);
-            display: flex;
-            justify-content: space-between;
-            padding: 15px 50px;
-            z-index: 100;
-            align-items: center;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.5);
-        }
-        nav .logo { font-size: 24px; font-weight: bold; color: #ffcc00; cursor: pointer; }
-        nav ul { list-style: none; display: flex; gap: 30px; margin: 0; padding: 0; }
-        nav ul li { cursor: pointer; transition: color 0.3s; }
-        nav ul li:hover { color: #ffcc00; }
+header {
+    background: linear-gradient(45deg,#1e3c72,#2a5298);
+    color: white;
+    padding: 25px;
+    text-align: center;
+    font-size: 30px;
+    font-weight: bold;
+}
 
-        /* Header */
-        header {
-            text-align: center;
-            padding: 120px 20px 60px 20px;
-        }
-        header img {
-            width: 180px;
-            height: 180px;
-            border-radius: 50%;
-            border: 5px solid #ffcc00;
-            object-fit: cover;
-        }
-        header h1 { font-size: 50px; margin: 20px 0 10px 0; }
-        header p { font-size: 22px; color: #ccc; max-width: 600px; margin: auto; }
-        header button {
-            margin-top: 20px;
-            background: #ffcc00;
-            border: none;
-            padding: 15px 35px;
-            font-size: 18px;
-            border-radius: 10px;
-            cursor: pointer;
-            color: #243b55;
-            transition: background 0.3s;
-        }
-        header button:hover { background: #e6b800; }
+.container {
+    padding: 20px;
+}
 
-        /* Main Cards */
-        #main-cards {
-            padding: 60px 20px;
-            max-width: 1000px;
-            margin: auto;
-        }
-        #main-cards h2 { text-align: center; font-size: 40px; margin-bottom: 40px; color: #ffcc00; }
-        .cards {
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: center;
-            gap: 20px;
-        }
-        .card {
-            background: rgba(255,255,255,0.1);
-            padding: 25px;
-            border-radius: 15px;
-            flex: 1 1 220px;
-            text-align: center;
-            transition: transform 0.3s, background 0.3s;
-        }
-        .card:hover {
-            transform: translateY(-10px);
-            background: rgba(255,255,255,0.2);
-        }
+.card {
+    background: white;
+    padding: 20px;
+    margin-bottom: 20px;
+    border-radius: 15px;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+}
 
-        /* Sections */
-        section {
-            padding: 80px 20px;
-            max-width: 1000px;
-            margin: auto;
-        }
-        section h2 {
-            text-align: center;
-            font-size: 40px;
-            margin-bottom: 40px;
-            color: #ffcc00;
-        }
+input, button {
+    padding: 10px;
+    margin: 5px 0;
+    width: 100%;
+    border-radius: 8px;
+    border: 1px solid #ccc;
+}
 
-        /* Skills & Projects */
-        .skills, .projects {
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: center;
-            gap: 25px;
-        }
-        .skill, .project {
-            background: rgba(255,255,255,0.1);
-            padding: 25px;
-            border-radius: 15px;
-            flex: 1 1 220px;
-            text-align: center;
-            transition: transform 0.3s, background 0.3s;
-        }
-        .skill:hover, .project:hover {
-            transform: translateY(-10px);
-            background: rgba(255,255,255,0.2);
-        }
-        .skill h3, .project h3 { margin: 15px 0 10px 0; }
-        .skill p, .project p { color: #ccc; }
+button {
+    background: #2a5298;
+    color: white;
+    cursor: pointer;
+}
 
-        .project button {
-            margin-top: 15px;
-            background: #ffcc00;
-            border: none;
-            padding: 10px 25px;
-            font-size: 16px;
-            border-radius: 8px;
-            cursor: pointer;
-            color: #243b55;
-            transition: background 0.3s;
-        }
-        .project button:hover { background: #e6b800; }
+video, iframe {
+    width: 100%;
+    margin-top: 10px;
+    border-radius: 10px;
+}
 
-        /* Contact */
-        #contact p { font-size: 18px; margin: 10px 0; }
-        #contact a { color: #ffcc00; }
+.file-item {
+    background: #f1f1f1;
+    padding: 10px;
+    margin-top: 10px;
+    border-radius: 8px;
+}
+</style></head><body><header>
+منصة تعليمية (فيديوهات + PDF)
+</header><div class="container"><div class="card">
+<h2>إضافة فيديو</h2>
+<input type="text" id="videoTitle" placeholder="عنوان الفيديو">
+<input type="text" id="videoURL" placeholder="رابط الفيديو (YouTube أو MP4)">
+<button onclick="addVideo()">إضافة الفيديو</button>
+<div id="videoList"></div>
+</div><div class="card">
+<h2>إضافة ملف PDF</h2>
+<input type="text" id="pdfTitle" placeholder="اسم الملف">
+<input type="text" id="pdfURL" placeholder="رابط ملف PDF">
+<button onclick="addPDF()">إضافة الملف</button>
+<div id="pdfList"></div>
+</div></div><script>
+let videos = [];
+let pdfs = [];
 
-        /* Footer */
-        footer {
-            text-align: center;
-            padding: 40px 20px;
-            background: #0f1a2b;
-            color: #ccc;
+function addVideo() {
+    let title = document.getElementById("videoTitle").value;
+    let url = document.getElementById("videoURL").value;
+
+    if(title === "" || url === "") {
+        alert("من فضلك املأ البيانات");
+        return;
+    }
+
+    videos.push({title, url});
+    displayVideos();
+}
+
+function displayVideos() {
+    let list = document.getElementById("videoList");
+    list.innerHTML = "";
+
+    videos.forEach((video, index) => {
+        let div = document.createElement("div");
+        div.className = "file-item";
+
+        if(video.url.includes("youtube")) {
+            div.innerHTML = `
+                <h3>${video.title}</h3>
+                <iframe src="${video.url.replace("watch?v=","embed/")}" allowfullscreen></iframe>
+                <button onclick="deleteVideo(${index})">حذف</button>
+            `;
+        } else {
+            div.innerHTML = `
+                <h3>${video.title}</h3>
+                <video controls src="${video.url}"></video>
+                <button onclick="deleteVideo(${index})">حذف</button>
+            `;
         }
 
-        /* Scroll effects */
-        .fade-in { opacity: 0; transform: translateY(50px); transition: all 1s ease; }
-        .fade-in.show { opacity: 1; transform: translateY(0); }
-    </style>
-</head>
-<body>
+        list.appendChild(div);
+    });
+}
 
-<nav>
-    <div class="logo">Amr</div>
-    <ul>
-        <li><a href="#main-cards">الأقسام الرئيسية</a></li>
-        <li><a href="#about">نبذة عني</a></li>
-        <li><a href="#skills">المهارات</a></li>
-        <li><a href="#projects">المشاريع</a></li>
-        <li><a href="#contact">تواصل معي</a></li>
-    </ul>
-</nav>
+function deleteVideo(index) {
+    videos.splice(index,1);
+    displayVideos();
+}
 
-<header>
-    <img src="https://via.placeholder.com/180" alt="صورة عمرو" id="profilePic">
-    <h1>أنا عمرو 👋</h1>
-    <p>مهتم بالبرمجة وببني أول Portfolio احترافي لي على الإنترنت. أحب المشاريع العملية والتعلم المستمر.</p>
-    <button onclick="alert('تواصل معايا قريب 😎')">تواصل معي</button>
-</header>
+function addPDF() {
+    let title = document.getElementById("pdfTitle").value;
+    let url = document.getElementById("pdfURL").value;
 
-<!-- Main Cards Section -->
-<section id="main-cards" class="fade-in">
-    <h2>أهم الأقسام</h2>
-    <div class="cards">
-        <div class="card">
-            <h3>الخانة 1</h3>
-            <p>نبذة عني أو أي محتوى مهم.</p>
-        </div>
-        <div class="card">
-            <h3>الخانة 2</h3>
-            <p>مشاريع أو روابط سريعة.</p>
-        </div>
-        <div class="card">
-            <h3>الخانة 3</h3>
-            <p>مهارات أو أي معلومات أساسية.</p>
-        </div>
-        <div class="card">
-            <h3>الخانة 4</h3>
-            <p>تواصل أو أي محتوى إضافي.</p>
-        </div>
-    </div>
-</section>
+    if(title === "" || url === "") {
+        alert("من فضلك املأ البيانات");
+        return;
+    }
 
-<section id="about" class="fade-in">
-    <h2>نبذة عني</h2>
-    <p>أنا مطور ويب مبتدئ، شغوف بتعلم كل جديد في البرمجة وتصميم المواقع. أحب بناء مشاريع عملية وأشاركها مع العالم. هدفي أن أكون مطور ويب عالمي مع خبرة في تصميم واجهات المستخدم وتطوير Back-end.</p>
-</section>
+    pdfs.push({title, url});
+    displayPDFs();
+}
 
-<section id="skills" class="fade-in">
-    <h2>المهارات</h2>
-    <div class="skills">
-        <div class="skill"><h3>HTML & CSS</h3><p>تصميم صفحات ويب جذابة وسريعة الاستجابة.</p></div>
-        <div class="skill"><h3>JavaScript</h3><p>برمجة تفاعلية وتحريك العناصر على الصفحة.</p></div>
-        <div class="skill"><h3>React</h3><p>بناء واجهات متقدمة وتفاعلية.</p></div>
-        <div class="skill"><h3>Node.js</h3><p>تطوير السيرفرات والتعامل مع قواعد البيانات.</p></div>
-        <div class="skill"><h3>Git & GitHub</h3><p>إدارة المشاريع والتعاون مع فرق العمل.</p></div>
-    </div>
-</section>
+function displayPDFs() {
+    let list = document.getElementById("pdfList");
+    list.innerHTML = "";
 
-<section id="projects" class="fade-in">
-    <h2>المشاريع</h2>
-    <div class="projects">
-        <div class="project">
-            <h3>موقع شخصي</h3>
-            <p>أول مشروع Portfolio تم تصميمه بالكامل.</p>
-            <button onclick="alert('مشروع شخصي')">عرض المشروع</button>
-        </div>
-        <div class="project">
-            <h3>موقع متجر</h3>
-            <p>تجربة بسيطة لمتجر إلكتروني باستخدام JavaScript.</p>
-            <button onclick="alert('مشروع متجر')">عرض المشروع</button>
-        </div>
-        <div class="project">
-            <h3>تطبيق ToDo</h3>
-            <p>تطبيق لإدارة المهام اليومية باستخدام LocalStorage.</p>
-            <button onclick="alert('مشروع ToDo')">عرض المشروع</button>
-        </div>
-    </div>
-</section>
+    pdfs.forEach((pdf, index) => {
+        let div = document.createElement("div");
+        div.className = "file-item";
 
-<section id="contact" class="fade-in">
-    <h2>تواصل معي</h2>
-    <p>📧 Email: <a href="mailto:amr@example.com">amr@example.com</a></p>
-    <p>📱 الهاتف: 0123456789</p>
-    <button onclick="alert('شكراً لتواصلك!')">أرسل رسالة</button>
-</section>
+        div.innerHTML = `
+            <h3>${pdf.title}</h3>
+            <iframe src="${pdf.url}"></iframe>
+            <button onclick="deletePDF(${index})">حذف</button>
+        `;
 
-<footer>
-    &copy; 2026 عمرو. كل الحقوق محفوظة.
-</footer>
+        list.appendChild(div);
+    });
+}
 
-<script>
-    // تأثير Fade-in عند التمرير
-    const faders = document.querySelectorAll('.fade-in');
-    const appearOptions = { threshold: 0.3 };
-    const appearOnScroll = new IntersectionObserver(function(entries, observer){
-        entries.forEach(entry => {
-            if(!entry.isIntersecting) return;
-            entry.target.classList.add('show');
-            observer.unobserve(entry.target);
-        });
-    }, appearOptions);
-    faders.forEach(fader => { appearOnScroll.observe(fader); });
+function deletePDF(index) {
+    pdfs.splice(index,1);
+    displayPDFs();
+}
 
-    // تغيير الصورة على الموقع (ضع رابط صورتك هنا)
-    // document.getElementById('profilePic').src = "رابط_صورتك_هنا";
-</script>
-
-</body>
+</script></body>
 </html>
