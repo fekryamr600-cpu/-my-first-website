@@ -1,321 +1,122 @@
-<!DOCTYPE html><html lang="ar" dir="rtl">
+<!DOCTYPE html>
+<html lang="ar">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>منصة تعليمية متكاملة</title><style>
-body {
-    margin: 0;
-    font-family: Tahoma;
-    background: #eef2f7;
-}
+<title>لعبة الهروب</title>
 
-header {
-    background: linear-gradient(45deg,#1e3c72,#2a5298);
-    color: white;
-    padding: 25px;
-    text-align: center;
-    font-size: 30px;
-    font-weight: bold;
-}
-
-.container {
-    padding: 20px;
-}
-
-.card {
-    background: white;
-    padding: 20px;
-    margin-bottom: 20px;
-    border-radius: 15px;
-    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
-}
-
-input, button {
-    padding: 10px;
-    margin: 5px 0;
-    width: 100%;
-    border-radius: 8px;
-    border: 1px solid #ccc;
-}
-
-button {
-    background: #2a5298;
-    color: white;
-    cursor: pointer;
-}
-
-video, iframe {
-    width: 100%;
-    margin-top: 10px;
-    border-radius: 10px;
-}
-
-.file-item {
-    background: #f1f1f1;
-    padding: 10px;
-    margin-top: 10px;
-    border-radius: 8px;
-}
-</style></head><body><header>
-منصة تعليمية (فيديوهات + PDF)
-</header><div class="container"><div class="card">
-<h2>إضافة فيديو</h2>
-<input type="text" id="videoTitle" placeholder="عنوان الفيديو">
-<input type="text" id="videoURL" placeholder="رابط الفيديو (YouTube أو MP4)">
-<button onclick="addVideo()">إضافة الفيديو</button>
-<div id="videoList"></div>
-</div><div class="card">
-<h2>إضافة ملف PDF</h2>
-<input type="text" id="pdfTitle" placeholder="اسم الملف">
-<input type="text" id="pdfURL" placeholder="رابط ملف PDF">
-<button onclick="addPDF()">إضافة الملف</button>
-<div id="pdfList"></div>
-</div></div><script>
-let videos = [];
-let pdfs = [];
-
-function addVideo() {
-    let title = document.getElementById("videoTitle").value;
-    let url = document.getElementById("videoURL").value;
-
-    if(title === "" || url === "") {
-        alert("من فضلك املأ البيانات");
-        return;
+<style>
+    body {
+        margin: 0;
+        overflow: hidden;
+        background: black;
+        font-family: Arial;
+        color: white;
+        text-align: center;
     }
 
-    videos.push({title, url});
-    displayVideos();
-}
+    #game {
+        width: 400px;
+        height: 600px;
+        background: #111;
+        margin: auto;
+        position: relative;
+        border: 3px solid white;
+    }
 
-function displayVideos() {
-    let list = document.getElementById("videoList");
-    list.innerHTML = "";
+    #player {
+        width: 50px;
+        height: 50px;
+        background: lime;
+        position: absolute;
+        bottom: 10px;
+        left: 175px;
+    }
 
-    videos.forEach((video, index) => {
-        let div = document.createElement("div");
-        div.className = "file-item";
+    .enemy {
+        width: 50px;
+        height: 50px;
+        background: red;
+        position: absolute;
+        top: 0;
+    }
 
-        if(video.url.includes("youtube")) {
-            div.innerHTML = `
-                <h3>${video.title}</h3>
-                <iframe src="${video.url.replace("watch?v=","embed/")}" allowfullscreen></iframe>
-                <button onclick="deleteVideo(${index})">حذف</button>
-            `;
-        } else {
-            div.innerHTML = `
-                <h3>${video.title}</h3>
-                <video controls src="${video.url}"></video>
-                <button onclick="deleteVideo(${index})">حذف</button>
-            `;
+    #score {
+        margin-top: 10px;
+        font-size: 20px;
+    }
+</style>
+</head>
+
+<body>
+
+<h2>🎮 لعبة تجنب العوائق</h2>
+<div id="game">
+    <div id="player"></div>
+</div>
+
+<div id="score">النقاط: 0</div>
+
+<script>
+let player = document.getElementById("player");
+let game = document.getElementById("game");
+let scoreDisplay = document.getElementById("score");
+
+let playerX = 175;
+let score = 0;
+let gameOver = false;
+
+// تحكم بالكيبورد
+document.addEventListener("keydown", function(e) {
+    if (e.key === "ArrowLeft" && playerX > 0) {
+        playerX -= 25;
+    }
+    if (e.key === "ArrowRight" && playerX < 350) {
+        playerX += 25;
+    }
+    player.style.left = playerX + "px";
+});
+
+// إنشاء عدو
+function createEnemy() {
+    if (gameOver) return;
+
+    let enemy = document.createElement("div");
+    enemy.classList.add("enemy");
+
+    let enemyX = Math.floor(Math.random() * 350);
+    enemy.style.left = enemyX + "px";
+
+    game.appendChild(enemy);
+
+    let fall = setInterval(() => {
+        let enemyTop = enemy.offsetTop;
+        enemy.style.top = enemyTop + 5 + "px";
+
+        // تصادم
+        if (
+            enemyTop > 540 &&
+            enemyX < playerX + 50 &&
+            enemyX + 50 > playerX
+        ) {
+            alert("💀 خسرت! النقاط: " + score);
+            gameOver = true;
+            location.reload();
         }
 
-        list.appendChild(div);
-    });
-}
-
-function deleteVideo(index) {
-    videos.splice(index,1);
-    displayVideos();
-}
-
-function addPDF() {
-    let title = document.getElementById("pdfTitle").value;
-    let url = document.getElementById("pdfURL").value;
-
-    if(title === "" || url === "") {
-        alert("من فضلك املأ البيانات");
-        return;
-    }
-
-    pdfs.push({title, url});
-    displayPDFs();
-}
-
-function displayPDFs() {
-    let list = document.getElementById("pdfList");
-    list.innerHTML = "";
-
-    pdfs.forEach((pdf, index) => {
-        let div = document.createElement("div");
-        div.className = "file-item";
-
-        div.innerHTML = `
-            <h3>${pdf.title}</h3>
-            <iframe src="${pdf.url}"></iframe>
-            <button onclick="deletePDF(${index})">حذف</button>
-        `;
-
-        list.appendChild(div);
-    });
-}
-
-function deletePDF(index) {
-    pdfs.splice(index,1);
-    displayPDFs();
-}
-
-</script></body>
-</html>
-<!DOCTYPE html><html lang="ar" dir="rtl">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>منصة تعليمية متكاملة</title><style>
-body {
-    margin: 0;
-    font-family: Tahoma;
-    background: #eef2f7;
-}
-
-header {
-    background: linear-gradient(45deg,#1e3c72,#2a5298);
-    color: white;
-    padding: 25px;
-    text-align: center;
-    font-size: 30px;
-    font-weight: bold;
-}
-
-.container {
-    padding: 20px;
-}
-
-.card {
-    background: white;
-    padding: 20px;
-    margin-bottom: 20px;
-    border-radius: 15px;
-    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
-}
-
-input, button {
-    padding: 10px;
-    margin: 5px 0;
-    width: 100%;
-    border-radius: 8px;
-    border: 1px solid #ccc;
-}
-
-button {
-    background: #2a5298;
-    color: white;
-    cursor: pointer;
-}
-
-video, iframe {
-    width: 100%;
-    margin-top: 10px;
-    border-radius: 10px;
-}
-
-.file-item {
-    background: #f1f1f1;
-    padding: 10px;
-    margin-top: 10px;
-    border-radius: 8px;
-}
-</style></head><body><header>
-منصة تعليمية (فيديوهات + PDF)
-</header><div class="container"><div class="card">
-<h2>إضافة فيديو</h2>
-<input type="text" id="videoTitle" placeholder="عنوان الفيديو">
-<input type="text" id="videoURL" placeholder="رابط الفيديو (YouTube أو MP4)">
-<button onclick="addVideo()">إضافة الفيديو</button>
-<div id="videoList"></div>
-</div><div class="card">
-<h2>إضافة ملف PDF</h2>
-<input type="text" id="pdfTitle" placeholder="اسم الملف">
-<input type="text" id="pdfURL" placeholder="رابط ملف PDF">
-<button onclick="addPDF()">إضافة الملف</button>
-<div id="pdfList"></div>
-</div></div><script>
-let videos = [];
-let pdfs = [
-    {
-        title: "ملف PDF مضاف تلقائياً",
-        url: "https://drive.google.com/file/d/1JX_19ImfsKLo5ABa-z49F70nEbzalyU1/preview"
-    }
-];
-
-function addVideo() {
-    let title = document.getElementById("videoTitle").value;
-    let url = document.getElementById("videoURL").value;
-
-    if(title === "" || url === "") {
-        alert("من فضلك املأ البيانات");
-        return;
-    }
-
-    videos.push({title, url});
-    displayVideos();
-}
-
-function displayVideos() {
-    let list = document.getElementById("videoList");
-    list.innerHTML = "";
-
-    videos.forEach((video, index) => {
-        let div = document.createElement("div");
-        div.className = "file-item";
-
-        if(video.url.includes("youtube")) {
-            div.innerHTML = `
-                <h3>${video.title}</h3>
-                <iframe src="${video.url.replace("watch?v=","embed/")}" allowfullscreen></iframe>
-                <button onclick="deleteVideo(${index})">حذف</button>
-            `;
-        } else {
-            div.innerHTML = `
-                <h3>${video.title}</h3>
-                <video controls src="${video.url}"></video>
-                <button onclick="deleteVideo(${index})">حذف</button>
-            `;
+        // خرج من الشاشة
+        if (enemyTop > 600) {
+            clearInterval(fall);
+            enemy.remove();
+            score++;
+            scoreDisplay.innerText = "النقاط: " + score;
         }
-
-        list.appendChild(div);
-    });
+    }, 30);
 }
 
-function deleteVideo(index) {
-    videos.splice(index,1);
-    displayVideos();
-}
+// تكرار الأعداء
+setInterval(createEnemy, 1000);
 
-function addPDF() {
-    let title = document.getElementById("pdfTitle").value;
-    let url = document.getElementById("pdfURL").value;
+</script>
 
-    if(title === "" || url === "") {
-        alert("من فضلك املأ البيانات");
-        return;
-    }
-
-    pdfs.push({title, url});
-    displayPDFs();
-}
-
-function displayPDFs() {
-    let list = document.getElementById("pdfList");
-    list.innerHTML = "";
-
-    pdfs.forEach((pdf, index) => {
-        let div = document.createElement("div");
-        div.className = "file-item";
-
-        div.innerHTML = `
-            <h3>${pdf.title}</h3>
-            <iframe src="${pdf.url}"></iframe>
-            <button onclick="deletePDF(${index})">حذف</button>
-        `;
-
-        list.appendChild(div);
-    });
-}
-
-function deletePDF(index) {
-    pdfs.splice(index,1);
-    displayPDFs();
-}
-
-</script></body>
+</body>
 </html>
